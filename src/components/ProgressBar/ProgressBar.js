@@ -4,14 +4,25 @@ import styled from 'styled-components';
 
 import { COLORS } from '../../constants';
 
+const HEIGHTS = {
+  small: 8,
+  medium: 12,
+  large: 16
+}
+
 const ProgressBar = ({ value, size, ariaLabel, ariaLabelledBy, className, ...rest }) => {
   if (!ariaLabel && !ariaLabelledBy) {
     throw new Error('Either ariaLabel or ariaLabelledBy must be set to provide an accessible label');
   }
-  return <Wrapper className={className} size={size} >
-    <BarRounder size={size}>
+  if (!HEIGHTS[size]) {
+    throw new Error(`size must be one of ${Object.keys(HEIGHTS)}`);
+  }
+
+  return <Wrapper className={className} isLarge={size === 'large'} >
+    <BarRounder>
       <Bar
         value={value}
+        size={size}
         role="progressbar"
         aria-valuenow={value}
         aria-valuemin={0}
@@ -25,29 +36,20 @@ const ProgressBar = ({ value, size, ariaLabel, ariaLabelledBy, className, ...res
 };
 
 const Wrapper = styled.div`
-  width: fit-content;
-  padding: ${p => p.size === 'large' ? 4 / 16 : 0}rem;
-  box-shadow: inset 0px ${2 / 16}rem ${4 / 16}rem ${COLORS.transparentGray35};
-  border-radius: ${p => p.size === 'large' ? 8 / 16 : 4 / 16}rem;
   background-color: ${COLORS.transparentGray15};
+  box-shadow: inset 0px ${2 / 16}rem ${4 / 16}rem ${COLORS.transparentGray35};
+  border-radius: ${p => p.isLarge ? 8 / 16 : 4 / 16}rem;
+  padding: ${p => p.isLarge ? 4 / 16 : 0}rem;
 `;
 
-const HEIGHTS = {
-  small: 8,
-  medium: 12,
-  large: 16
-}
-
 const BarRounder = styled.div`
-  width: ${p => (p.size === 'large' ? 362 : 370) / 16}rem;
-  height: ${p => HEIGHTS[p.size] / 16}rem;
   border-radius: ${4 / 16}rem;
   overflow: hidden;
 `;
 
 const Bar = styled.div`
   width: ${p => p.value}%;
-  height: 100%;
+  height: ${p => HEIGHTS[p.size] / 16}rem;
   background-color: ${COLORS.primary};
 `;
 
