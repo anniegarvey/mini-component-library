@@ -31,7 +31,7 @@ const Wrapper = styled.div`
 const InnerSelect = styled.select`
   font-family: Roboto, sans-serif;
   font-size: 1rem;
-  padding: 12px 54px 12px 16px;
+  padding: 12px ${54 / 16}rem 12px 16px;
   border: none;
   border-radius: 8px;
   background-color: ${COLORS.transparentGray15};
@@ -46,8 +46,8 @@ const InnerSelect = styled.select`
 
 const Chevron = styled(Icon)`
   position: absolute;
-  top: 10px;
-  right: 12px;
+  top: ${10 / 16}rem;
+  right: ${12 / 16}rem;
   pointer-events: none;
 `;
 
