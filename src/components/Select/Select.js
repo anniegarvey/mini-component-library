@@ -38,10 +38,6 @@ const InnerSelect = styled.select`
   color: inherit;
   appearance: none;
   width: fit-content;
-
-  &:focus {
-    outline-color: ${COLORS.primary};
-  }
 `;
 
 const Chevron = styled(Icon)`
