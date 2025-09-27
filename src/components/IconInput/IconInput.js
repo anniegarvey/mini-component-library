@@ -25,19 +25,23 @@ const IconInput = ({
 
 const Wrapper = styled.div`
   position: relative;
+  color: ${COLORS.gray700};
+
+  &:hover {
+    color: ${COLORS.black};
+  }
 `;
 
 const StyledIcon = styled(Icon)`
   position: absolute;
   bottom: ${p => p.isSmall ? (4 / 16) : (5/16)}rem;
   pointer-events: none;
-  color: ${COLORS.gray700};
 `;
 
 const Input = styled.input`
   border: none;
   border-block-end: ${p => p.isSmall ? 1 : 2}px solid ${COLORS.black};
-  color: ${COLORS.gray700};
+  color: inherit;
   font-family: Roboto, sans-serif;
   font-size: ${p => p.isSmall ? (14 / 16) : (18 / 16)}rem;
   font-weight: 700;
@@ -53,10 +57,6 @@ const Input = styled.input`
 
   &:focus {
     outline-offset: 2px;
-  }
-
-  &:hover {
-    color: ${COLORS.black};
   }
 `;
 
