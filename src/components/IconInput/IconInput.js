@@ -11,14 +11,15 @@ const IconInput = ({
   icon,
   width = 250,
   size,
-  placeholder,
+  className,
+  ...rest
 }) => {
   const isSmall = size === 'small';
-  return <Wrapper>
+  return <Wrapper className={className}>
     <label>
       <VisuallyHidden>{label}</VisuallyHidden>
       <StyledIcon id={icon} size={isSmall ? 16 : 24} strokeWidth={2} isSmall={isSmall} />
-      <Input placeholder={placeholder} isSmall={isSmall} width={width} />
+      <Input isSmall={isSmall} width={width} {...rest} />
     </label>
   </Wrapper>;
 };
